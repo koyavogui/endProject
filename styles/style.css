@@ -1,0 +1,31 @@
+ .text-zokubird{
+     color: rgb(252, 130, 0) !important;
+    
+ }
+ .bg-zokubird{
+     background-color: rgb(252, 130, 0) !important;
+ }
+ .border-zokubird{
+     border: 1px solid rgb(252, 130, 0) !important;
+ }
+ .btn-zokubird{
+    background-color: rgb(252, 130, 0) !important;
+    border-radius: 0 !important;
+ }
+ .btn-zokubird:hover{
+    background-color: rgba(252, 130, 0, 0.837) !important;
+ }
+ .form-label{
+    font-weight: bold !important;
+ }
+ .zbird-menu:hover{
+    background-color: rgb(57, 136, 255) !important;
+    color:rgb(252, 130, 0) !important;
+ }
+ .zbird-actif{
+    background-color: rgb(255, 255, 255) !important;
+ }
+ .border-top-zokubird{
+     border-top: 1px solid rgb(252, 130, 0) !important;
+ }
+  
