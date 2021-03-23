@@ -14,10 +14,15 @@
                 <a href="../../" class="text-zokubird"><i class="bi bi-box-arrow-right"></i></a>
             </article>
         </header>
-        <section class="sticky-top">
-            <nav class="container-fluid bg-zokubird d-flex flex-row bd-highlight justify-content-center py-2">
-            <div class="p-2 bd-highlight "> <a href="./" class=" text-light">ACTIVITE</a> </div>
-                <div class="p-2 bd-highlight border-left border-right border-light"><a href="stat.php" class=" text-light" >STATISTIQUES</a></div>
-                <div class="p-2 bd-highlight"><a href="./profil.php" class=" text-light">MON PROFIL</a></div>
+            <?php
+                $path_parts = pathinfo($_SERVER["REQUEST_URI"]);
+                $actif = $path_parts['filename'];
+                // var_dump($actif);
+            ?>
+        <section class="sticky-top container-fluid bg-zokubird">
+            <nav class="text-center container-fluid-md d-flex flex-row justify-content-center py-2">
+                <div class="col-3 "> <a href="./" class=" <?php echo $ok =  ($actif =="admin") ? 'text-actif' : 'menu-text text-dark' ; ?>">ACTIVITE</a> </div>
+                <div class=" col-3   "><a href="stat.php" class="<?php echo $ok =  ($actif =="stat") ? 'text-actif' : 'menu-text text-dark' ; ?>" >STATISTIQUES</a></div>
+                <div class="col-3  "><a href="./profil.php" class="<?php echo $ok =  ($actif =="profil") ? 'text-actif' : 'menu-text text-dark' ; ?>">MON PROFIL</a></div>
             </nav>
         </section>

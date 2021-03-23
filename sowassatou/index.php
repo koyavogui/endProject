@@ -18,8 +18,12 @@
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <?php require '../includes/head.php';?>
+<head>       
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./../styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <title>Zokubird Connexion</title>
 </head>
 <body class="container-fluid p-0">
@@ -50,7 +54,7 @@
                         <img src="./uploaded/<?php echo $page->imgPage; ?>" alt="image de description de l'hotel de sunshine" srcset="" class="img-fluid" style="">
                     </div>
                     <div class="ratio ratio-16x9" id="ressourceIframe">
-                        <iframe src="https://www.youtube.com/embed/ogAhBq2CrvY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <!-- <iframe src="https://www.youtube.com/embed/ogAhBq2CrvY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                     </div>
                     <article>
                         <h2><?php echo $page->nomPage; ?></h2>
@@ -58,7 +62,7 @@
                     </article>
                     <article>
                         <h5>Adresse</h5>
-                        <p>PK14, Lagune Aby d’Assinie Mafia, Assinie Côte d'Ivoire</p>
+                        <p><?php echo @$page->adressPage; ?></p>
                     </article>
                     <article>
                         <h5>Email :</h5>
@@ -70,16 +74,16 @@
                     </article>
                     <article class="d-flex">
                         <div class="p-2">
-                            <a href="<?php echo $page->twitterPage; ?>" style="font-size: 2em;" target="blank" class="text-dark ml-1"><i class="bi bi-globe2"></i></a>
+                            <a href="<?php echo $page->sitePage; ?>" style="font-size: 2em;" target="blank" class="link-dark ml-1"><i class="bi bi-globe2"></i></a>
                         </div>
                         <div class="p-2">
-                            <a href="<?php echo $page->twitterPage; ?>" style="font-size: 2em;" target="blank" class="text-info ml-1"><i class="bi bi-twitter"></i></a>
+                            <a href="<?php echo $page->twitterPage; ?>" style="font-size: 2em; color: #0dcaf0 !important;" target="blank" class="link-info ml-1"><i class="bi bi-twitter"></i></a>
                         </div>
                         <div class="p-2">
-                            <a href="<?php echo $page->youtubePage; ?>" style="font-size: 2em;" target="blank" class="text-danger ml-1"><i class="bi bi-youtube"></i></a>
+                            <a href="<?php echo $page->youtubePage; ?>" style="font-size: 2em;" target="blank" class="link-danger ml-1"><i class="bi bi-youtube"></i></a>
                         </div>
                         <div class="p-2">
-                            <a href="<?php echo $page->facebookPage; ?>" style="font-size: 2em;" target="blank" class="text-primary"><i class="bi bi-facebook"></i></a>
+                            <a href="<?php echo $page->facebookPage; ?>" style="font-size: 2em;" target="blank" class="link-primary "><i class="bi bi-facebook"></i></a>
                         </div>
                     </article>
                 </div>

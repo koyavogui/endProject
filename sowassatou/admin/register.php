@@ -44,7 +44,7 @@
     
     <title>Zokubird - <?php echo $_SESSION['nomPage']; ?> </title>
 </head>
-<body class="container-fluid">
+<body class="">
     <?php require '../../includes/header_editeur.php' ?>   
     <div class="modal " tabindex="-1" id="deleteModal">
         <div class="modal-dialog modal-dialog-centered">

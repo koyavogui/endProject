@@ -14,7 +14,7 @@ session_start();
     require "./../../database/database.php";
 
     $page = $_SESSION['numPage'];
-    $zbirdEchecs =  $db->prepare("SELECT * FROM echecs WHERE idPage ='$page' ORDER BY create_at ASC");
+    $zbirdEchecs =  $db->prepare("SELECT * FROM echecs WHERE idPage ='$page' ORDER BY statusEchec ASC");
     $zbirdEchecs ->execute();
     $nbr = $zbirdEchecs->rowCount();
     $zbird = $zbirdEchecs->fetchAll(PDO::FETCH_OBJ);

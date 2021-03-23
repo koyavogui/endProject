@@ -174,7 +174,6 @@
      * puis verification
      */
     if(!empty($_POST['emailLogin'])){
-        
         $check = $db->prepare("SELECT * FROM users, pages WHERE emailUser=:email AND (userPage=idUser OR userPage=parentUser) LIMIT 1");
         $check->bindParam(':email', $_POST['emailLogin']);
         $check->execute();
@@ -182,7 +181,6 @@
         $output=array('login'=>$answer,'role' =>'');
         if($check->rowCount() > 0){
             $userActif= $check->fetch(PDO::FETCH_OBJ);
-            // var_dump(password_verify($_POST['password'], $userActif->passwordUser));
             if (password_verify($_POST['password'], $userActif->passwordUser)) {
                 $answer="success";
                 $_SESSION['idUser']    = $userActif->idUser;

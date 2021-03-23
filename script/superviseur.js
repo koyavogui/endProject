@@ -6,14 +6,29 @@ $(document).ready(function () {
 
     $("#admin").click(function (e) { 
         // e.preventDefault();
-        console.log('admin');
-        $(".userRow").hide();
-        $(".adminRow").show();
+        $.post("./../../services/tabadmin.php",{page : 1},
+            function (data) {
+                $("#table").html(data);
+            }
+        );
     });
     $("#user").click(function (e) { 
         // e.preventDefault();
-        console.log('admin');
-        $(".userRow").show();
-        $(".adminRow").hide();
+        $.post("./../../services/tabuser.php", {page : 1},
+            function (data) {
+                $("#table").html(data);
+            }
+        );
     });
+    
 });
+function pagination(page, operation) {
+    $(function () {
+            const url = './../../services/'+operation +'.php';
+            $.post(url, {page : page},
+            function (data) {
+                $("#table").html(data);
+            }
+        );
+    });
+}

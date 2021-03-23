@@ -20,7 +20,7 @@
 
         <!-- Corps-->
         <div class=" container row mx-auto mb-5" id="app">
-            <section class="col-12 col-md-3 col-lg-6  mb-2 px-2 py-5  " id="btnconnexion">
+            <section class="col-12 col-lg-6  mb-2 px-2 py-5  " id="btnconnexion">
                 <article class="p-2 ">
                     <img src="./images/zbird.png" alt="logo de zokubird" srcset="" class="img-fluid mx-auto d-block" style="max-height :30vh;">
                 </article>
@@ -31,7 +31,7 @@
                     <div class="btn btn-zokubird text-light container-fluid" id="locationHref">Connexion</div>
                 </article>
             </section>
-            <section class="col-12 col-md-9 col-lg-6 ">
+            <section class="col-12 col-lg-6 ">
                 <section  class="row bg-zokubird text-light text-center py-2 " > <span class="text-center" id="formTitle">Creer un compte</span>  </section>
                 <div class="row border border-zokubird mb-3  px-3 py-2 mt-2" id="cadre">
                     <!-- formulaire d -->                    
@@ -127,7 +127,7 @@
                             <label class="form-label text-zokubird" class="form-check-label text-zokubird" for="condition">Acceptez nos termes et conditions d’utilisation</label>
                         </div>
                         <div class="form-group row mb-3 mx-auto">
-                            <button type="submit" class="mx-auto col-md-6 btn btn-zokubird text-light shadow" id="btnvalidate">Valider</button>
+                            <button type="submit" class="mx-auto col-md-6 btn btn-zokubird text-light shadow-sm" id="btnvalidate">Valider</button>
                         </div>
                     </form>
                     <!-- formulaire de connexion au paneau administrateur -->                    
@@ -154,7 +154,7 @@
             </section>
         </div>
         <!-- footer-->
-        <footer class="bg-zokubird text-light mt-2 text-center  border w-100 fixed-bottom" style="height :40px;"> Copyright Zokubird </footer>
+        <footer class="bg-zokubird text-light mt-2 text-center   w-100 fixed-bottom" style="height :40px;"> Copyright Zokubird </footer>
     <script src="script/jquery.js" ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
     <script src="script/main.js"></script>

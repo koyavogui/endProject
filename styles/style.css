@@ -1,31 +1,82 @@
- .text-zokubird{
-     color: rgb(252, 130, 0) !important;
-    
+@font-face {
+   font-family: "calps";
+   src:  url("./font/0c28006f19928dfd146027cfd7024ca0.woff") format("woff"),
+         url("./font/0c28006f19928dfd146027cfd7024ca0.woff") format("woff2");
+
+   font-family: "calps-regular";
+   src:  url("./font/2f86dc938a55788d3416b876b43a116a.woff") format("woff"),
+         url("./font/2f86dc938a55788d3416b876b43a116a.woff2") format("woff2");
+  }
+
+body {
+   font-size: 17px !important;
+    color: #273331 !important;
+    letter-spacing: -0.021em !important;
+    font-family: calps-regular !important;
  }
+ .text-zokubird{
+     color: #273331 !important; 
+ }
+.text-actif{
+   font-family: calps-regular;
+   color: #fff!important;
+   opacity: .86;
+   /* font-size: 14px; */
+}
  .bg-zokubird{
-     background-color: rgb(252, 130, 0) !important;
+     background-color: #FA9608 !important;
  }
  .border-zokubird{
-     border: 1px solid rgb(252, 130, 0) !important;
+     border: 1px solid #FA9608 !important;
  }
  .btn-zokubird{
-    background-color: rgb(252, 130, 0) !important;
-    border-radius: 0 !important;
+   background-color: #273331 !important;
+   border-radius: 0 !important;
+   color: #fff  !important;
+   box-shadow: 0 .3rem 1rem rgba(0,0,0,.15)!important;
+
  }
  .btn-zokubird:hover{
-    background-color: rgba(252, 130, 0, 0.837) !important;
+   background-color: #fff !important;
+   color:  #7E4C04 !important;
+   border: 1px solid #7E4C04 !important;
+ }
+ .first{
+   color: #7E4C04  !important;
+   font-weight: bold !important;
+ }
+ .ztext-dark{
+   color: #273331 !important;
  }
  .form-label{
     font-weight: bold !important;
  }
- .zbird-menu:hover{
-    background-color: rgb(57, 136, 255) !important;
-    color:rgb(252, 130, 0) !important;
+ /* .zbird-menu:hover{
+   background-color: #ECBC84 !important;
+   color:#273331 !important; 
+ } */
+ .menu-text{
+   /* font-weight: bold !important; */
+   font-family: calps-regular;
+   opacity: .86 !important;
+   font-size: 14px !important;
+
  }
  .zbird-actif{
-    background-color: rgb(255, 255, 255) !important;
+      font-family: calps-regular;
+    color: #273331!important;
+    opacity: .56;
+ }
+ .zborder{
+   border-bottom: 1px solid #273331 !important;
  }
  .border-top-zokubird{
-     border-top: 1px solid rgb(252, 130, 0) !important;
+     border-top: 1px solid #FA9608 !important;
+ }
+ .bg-zokubird-ligth{
+    background-color: #fa9200ce  !important;
+ }
+ a{
+    text-decoration: none  !important;
  }
   

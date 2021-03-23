@@ -1,6 +1,6 @@
 
-<section class="container">
-    <section class="d-flex justify-content-center">
+<section class="container-lg">
+    <section class="py-2 d-flex justify-content-center">
         <?php
             require "../../database/database.php";
             @session_start();
@@ -9,18 +9,43 @@
             $act -> execute();
             $nbr = $act->rowCount();
             $act = $act->fetchAll(PDO::FETCH_OBJ);
+            $adminNbr = $db->query("SELECT COUNT(*) as nbrUser FROM activities WHERE authorActivity != 'Utilisateur' AND page =$page");
+            $nbrAdmin = $adminNbr->fetch(PDO::FETCH_OBJ);
             $db = null;
+            $nombredepage = intdiv($nbr,15);
+            $reste = $nbr%15;
+            if ($reste !=0 ) {
+                ++$nombredepage;
+            }
 
         ?>
-        <h2>LES ACTIVITES (<?php echo $nbr; ?>)</h2>
+        <div class="my-2 px-3 ">
+            <h2 class="first">LES ACTIVITES</h2>
+        </div>
     </section>
     <section class="mx-5 px-5 row d-flex justify-content-between">
-        <a href="./" class="col-md-3 btn btn-zokubird   rounded-0">Toutes les Activités</a>
-        <a href="#" class="col-md-3 btn btn-zokubird   rounded-0" id="admin">Administration</a>
-        <a href="#" class="col-md-3 btn btn-zokubird  rounded-0" id="user">Utilisateur</a>
+        <div class="col-md-4 my-2">
+            <div class="position-relative">
+                <a href="./" class="btn btn-zokubird container-fluid  rounded-0 ">Toutes les Activités 
+                </a>
+                <div class="position-absolute top-0 start-100 translate-middle badge bg-zokubird" ><?php echo $t = ($nbr>=100)? '+99' : $nbr; ?> <span class="visually-hidden">unread messages</span></div>
+            </div>
+        </div>
+        <div class="col-md-4 my-2">
+            <div class="position-relative">
+                <a href="#" class="btn btn-zokubird  container-fluid rounded-0" id="admin">Administration</a>
+                <div class="position-absolute top-0 start-100 translate-middle badge bg-zokubird" > <?php echo $t = ($nbrAdmin->nbrUser>=100)? '+99' : $nbrAdmin->nbrUser; ?><span class="visually-hidden">unread messages</span></div>
+            </div>
+        </div>
+        <div class="col-md-4 my-2">
+            <div class="position-relative">
+                <a href="#" class="container-fluid btn btn-zokubird  rounded-0" id="user">Utilisateur</a>
+                <div class="position-absolute top-0 start-100 translate-middle badge bg-zokubird" ><?php echo $t = ($nbr-$nbrAdmin->nbrUser >=100)? '+99' : $nbr-$nbrAdmin->nbrUser ; ?> <span class="visually-hidden">unread messages</span></div>
+            </div>
+        </div>
     </section>
-    <section class="mt-3 mb-5 ">
-        <table class="table table-striped border-dark table-sm">
+    <section class="mt-3 mb-5" id="table">
+        <table class="table  border-dark table-sm">
             <thead class="bg-zokubird">
                 <tr class="">
                 <th scope="col">Auteur</th>
@@ -32,7 +57,8 @@
             </thead>
             <tbody>
             <?php
-                foreach ($act as $a) {
+                foreach ($act as $key =>$a) {
+                    if ($key < 15) {
             ?>
             <tr class="<?php if ($a->authorActivity === 'Utilisateur') {
                             echo 'userRow';
@@ -51,23 +77,29 @@
             </tr>
             <?php
                 }
+            }
             ?>
             </tbody>
         </table>
-        <div class="row d-flex justify-content-center align-items-center">
-            <nav aria-label="Page navigation example  ">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                    <a class="page-link text-zokubird" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="bg-zokubird page-link text-white" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-zokubird" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-zokubird" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link text-zokubird" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <?php    
+            echo '<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">';
+            $page = 1 ;
+            if($page == 1) {
+                echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+            }else{
+                echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+            }
+
+            echo'<li class="page-item" id="pageActuel" data-page='. $page .'><span class="page-link border-0 text-secondary">'.$page.' sur '.$nombredepage.'</span></li>';
+            
+            if($page == 7) {
+                echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+            }else{
+                echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+            }
+            echo '</ul>
+          </nav>';
+        ?>
      </section>
 </section>

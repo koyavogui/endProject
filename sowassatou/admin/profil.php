@@ -33,8 +33,8 @@
                     break;
             }
         ?>
-     <section class="mt-5 d-flex justify-content-center">
-        <h2>Editer votre profile</h2>
+     <section class="my-4 d-flex justify-content-center">
+        <h2 class="first">Editer votre profile</h2>
      </section>
      <div class="mx-auto">
             <section class="container">
@@ -123,16 +123,17 @@
     <script src="../../script/jquery.js"  ></script>
     <?php
         // var_dump($_SESSION['role']);
-        $script = "";
+
             switch ($_SESSION['role']) {
                 case 'Administrateur':
-                    echo '<script src="../../script/admin.js"></script>';
+                    echo '<script src="./../../script/admin.js"></script>';
                     break;
                 case 'Editeur':
-                    echo '<script src="../../script/editeur.js"></script>';
+                    echo '<script src="./../../script/editeur.js"></script>';
                     break;
                 case 'Superviseur':
-                    require '<script src="../../script/superviseur.js"></script>';
+                    echo '<script src="./../../script/editeur.js"></script>';
+                        // require '<script src="./../../script/superviseur.js"></script>';
                     break;
                 default:
                     break;

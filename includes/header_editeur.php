@@ -14,10 +14,10 @@
                 </div>
             </article>
         </header>
-        <section class="sticky-top">
-            <nav class="container-fluid bg-zokubird d-flex flex-row bd-highlight justify-content-center py-2">
-                <div class="p-2 bd-highlight "> <a href="./" class=" text-light">INTELLIGENCE</a> </div>
-                <div class="p-2 bd-highlight border-left border-right border-light"><a href="./echec.php" class=" text-light">LES ECHECS</a></div>
-                <div class="p-2 bd-highlight"><a href="./profil.php" class=" text-light">MON PROFIL</a></div>
+        <section class="sticky-top container-fluid bg-zokubird">
+            <nav class="text-center container-fluid-md d-flex flex-row justify-content-center py-2">
+                <div class="col-3"> <a href="./" class=" text-center ">INTELLIGENCE</a> </div>
+                <div class="col-3"><a href="./echec.php" class=" text-center ">LES ECHECS</a></div>
+                <div class="col-3"><a href="./profil.php" class=" text-light">MON PROFIL</a></div>
             </nav>
         </section>

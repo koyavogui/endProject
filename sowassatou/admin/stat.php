@@ -5,6 +5,12 @@
         exit();
     }
     require "../../database/database.php";
+    $page  = $_SESSION['numPage'];
+    $act = $db->prepare("SELECT actionActivity, COUNT(actionActivity) AS nbrSearch FROM activities WHERE authorActivity ='Utilisateur' AND  page =$page GROUP BY actionActivity ORDER BY nbrSearch desc LIMIT 10");
+    $act -> execute();
+    $nbr = $act->rowCount();
+    $act = $act->fetchAll(PDO::FETCH_OBJ);
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,8 +21,10 @@
 <body class="">
     <?php include "./../../includes/header_superviseur.php" ?>
     <div class="container">
-        <section class="d-flex justify-content-center">
-            <h2>LES ACTIVITES (10)</h2>
+        <section class=" py-2 d-flex justify-content-center">
+            <div class="my-2 px-3">
+                <h2 class="first">Les Différentes questions</h2>
+            </div>
         </section>
 
         <div class="row">
@@ -33,17 +41,10 @@
                     <h2>Table</h2>
                 </section>
                 <section class="mt-3">
-                <?php
-                    $page  = $_SESSION['numPage'];
-                    $act = $db->prepare("SELECT actionActivity, COUNT(actionActivity) AS nbrSearch FROM activities WHERE authorActivity ='Utilisateur' AND  page =$page GROUP BY actionActivity ORDER BY nbrSearch desc LIMIT 10");
-                    $act -> execute();
-                    $nbr = $act->rowCount();
-                    $act = $act->fetchAll(PDO::FETCH_OBJ);
-                    
-                ?>
+                
                     <table class="table table-striped border-dark table-sm">
                         <thead class="bg-zokubird">
-                            <tr class="">
+                            <tr class="text-ligth">
                                 <th scope="col">Questions (<?php echo $nbr; ?>)</th>
                                 <th scope="col">Nombres</th>
                             </tr>

@@ -1,4 +1,3 @@
-<div class="container-fluid p-0">
         <header class="d-flex mt-2 container">
             <article class="flex-grow-1">
                 <img src="../../images/zbird.png" alt="logo de zokubird" srcset="" class="img-fluid" style="max-height :65px;">
@@ -15,16 +14,21 @@
                 </div>
             </article>
         </header>
-        <section class="sticky-top">
                 <?php
                     $path_parts = pathinfo($_SERVER["REQUEST_URI"]);
                     $actif = $path_parts['filename'];
                 ?>
-                <nav class="container-fluid bg-zokubird d-flex flex-row bd-highlight justify-content-center">
-                    <div class="px-2 py-3 bd-highlight <?php echo $ok =  ($actif =="admin") ? 'zbird-actif' : 'zbird-menu' ; ?>  "> <a href="./" class="<?php echo $ok =  ($actif =="admin") ? 'text-zokubird' : 'text-light' ; ?>">VOTRE PAGE</a> </div>
-                    <div class="px-2 py-3 bd-highlight border-left border-light  <?php echo $ok =  ($actif =="gestion-user") ? 'zbird-actif' : 'zbird-menu' ; ?>"><a href="./gestion-user.php" class="<?php echo $ok =  ($actif =="gestion-user") ? 'text-zokubird' : 'text-light' ; ?>">GESTION UTILISATEURS</a></div>
-                    <div class="px-2 py-3 bd-highlight border-left border-light <?php echo $ok =  ($actif =="profil") ? 'zbird-actif' : 'zbird-menu' ; ?>"><a href="./profil.php" class=" <?php echo $ok =  ($actif =="profil") ? 'text-zokubird' : 'text-light' ; ?>">Profil</a></div>
+        <section class="sticky-top container-fluid bg-zokubird">
+                <nav class=" container-fluid-md d-flex flex-row  justify-content-center py-2">
+                    <div class="col-3 text-center"> 
+                        <a href="./" class="<?php echo $ok =  ($actif =="admin") ? 'text-actif' : 'menu-text text-dark' ; ?>  ">Votre page</a> 
+                    </div>
+                    <div class="col-3 text-center">
+                        <a href="./gestion-user.php" class="<?php echo $ok =  ($actif =="gestion-user") ? 'text-actif' : 'menu-text text-dark' ; ?>  ">Gestion des utilisateurs</a>
+                    </div>
+                    <div class="col-3 text-center">
+                        <a href="./profil.php" class=" <?php echo $ok =  ($actif =="profil") ? 'text-actif' : 'menu-text text-dark' ; ?> ">Profil</a>
+                    </div>
                 </nav>
         </section>
-</div>
   

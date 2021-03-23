@@ -1,6 +1,6 @@
 
-        <section class="d-flex justify-content-center">
-            <h2>Informations de votre page</h2>
+        <section class="d-flex justify-content-center my-4">
+            <h2 class="first">Informations de votre page</h2>
         </section>
         <div class="mb-3" id="admin">
         <div class="row col-md-7 mx-auto mb-5" id="admminMineur"> 
@@ -16,7 +16,6 @@
                             $page->bindParam(':id', $_SESSION['numPage']);
                             $page->execute();
                             $page = $page->fetch(PDO::FETCH_OBJ);
-                            // var_dump($page);
                         ?>
                         <textarea class="form-control border border-primary rounded-0" id="description" name="description" rows="3"> <?php echo $page->descPage ; ?></textarea>
                     </div>

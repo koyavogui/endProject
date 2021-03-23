@@ -20,27 +20,25 @@
         <?php require '../../includes/header_admin.php';?>
     <div class=" container-md">
         <div class="row" id="listUser">
-            <?php
-                  require "../../database/database.php";
-                  $id       = $_SESSION['idUser'];
-                  $users    =  $db->prepare("SELECT * FROM users WHERE parentUser=$id");
-
-                  $users -> execute();
-
-                  $nbr      = $users->rowCount();
-                  $users    = $users->fetchAll(PDO::FETCH_OBJ);
-                  $db = null;
-            ?>
-                <section class="d-flex justify-content-center mt-3">
-                <h2>GESTION DES UTILISATEURS (<?php echo $nbr; ?>)</h2>
+                <?php
+                    require "../../database/database.php";
+                    $id       = $_SESSION['idUser'];
+                    $users    =  $db->prepare("SELECT * FROM users WHERE parentUser=$id");
+                    $users -> execute();
+                    $nbr      = $users->rowCount();
+                    $users    = $users->fetchAll(PDO::FETCH_OBJ);
+                    $db = null;
+                ?>
+                <section class="d-flex justify-content-center my-4">
+                    <h2 class="first">GESTION DES UTILISATEURS (<?php echo $nbr; ?>)</h2>
                 </section>
-                <section class="d-flex">
+                <section class="d-flex mb-4">
                     <div class="mx-3 btn btn-zokubird text-light rounded-0" id="btnAdd">Ajouter un utilisateur</div>
-                    <p> <strong><em> Les utilisateurs en rouge sont les utilisateurs bloqués qui ne pourront plus se connecter à la plateforme</em></strong></p>
+                    <p class="fw-lighter"> Les utilisateurs en rouge sont les utilisateurs bloqués qui ne pourront plus se connecter à la plateforme </p>
                 </section>
                 <section class="mt-3 table-responsive">
-                    <table class="table table-striped border-dark table-sm">
-                        <thead class="bg-zokubird">
+                    <table class="table border-dark table-sm">
+                        <thead class="bg-zokubird-ligth">
                             <tr class="">
                                 <th scope="col">Nom</th>
                                 <th scope="col"></th>
@@ -52,7 +50,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($users as $user) {?>
-                                <tr>
+                                <tr class="">
                                     <td>
                                         <?php echo $user->fullNamesUser; ?>
                                     </td>

@@ -2,7 +2,7 @@
     $db_host="localhost"; // localhost server
     $db_user="root"; //nom de l'utilisateur de la base de donnée
     $db_password=""; //mot de passe utilisateur
-    $db_name="zokubird"; //nom de la base de donnée
+    $db_name="zbird"; //nom de la base de donnée
 
     try
     {

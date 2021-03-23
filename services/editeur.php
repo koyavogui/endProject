@@ -88,6 +88,26 @@
         // Enregistrement de l'intelligence
         $insertIntellect = $intellect->execute();
         if ($insertIntellect){
+            /**
+             *  verification dans les echecs toute question faisant parti de l'intelect enregistrer pour l'enlever dans les echecs.
+             */
+            $page       = $_SESSION['numPage']; 
+            $echec = $db->query("SELECT * FROM echecs WHERE statusEchec=0 AND idPage ='$page'");
+            $echecs = $echec->fetchAll(PDO::FETCH_OBJ);
+            $i=0;
+            foreach ($echecs as $echec) {
+                 $echecStmt = $db->prepare('SELECT questionsIntellect, idIntellect FROM  intellects WHERE pageIntellect ='.$page.' AND questionsIntellect LIKE  :echec');
+                 var_dump($echec->questionEchec);
+                 $condition = "%$echec->questionEchec%";
+                 $echecStmt->bindParam(':echec', $condition);
+                 $echecStmt->execute();
+                 $echecresutlt = $echecStmt->fetch(PDO::FETCH_OBJ);
+                 if ($echecresutlt) {
+                    $id = $echec->idEchec;
+                    $echec = $db->prepare("UPDATE echecs SET statusEchec=1, idIntellect=$echecresutlt->idIntellect WHERE idEchec=$id");
+                    $yf = $echec->execute();
+                }
+            }
             $activite = $db->prepare("INSERT INTO activities(authorActivity, actionActivity, descActivity, page) VALUE(:authorActivity, :actionActivity, :descActivity, :page)");
             $activite->bindParam(':authorActivity', $author);
             $activite->bindParam(':actionActivity', $action); 
@@ -156,6 +176,31 @@
             }
         }
         if ($intellect->execute()) {
+            /**
+             *  verification dans les echecs toute question faisant parti de l'intelect enregistrer pour l'enlever dans les echecs.
+             */
+            $page       = $_SESSION['numPage']; 
+            $echec = $db->query("SELECT * FROM echecs WHERE statusEchec=0 AND idPage ='$page'");
+            $echecs = $echec->fetchAll(PDO::FETCH_OBJ);
+            $i=0;
+            foreach ($echecs as $echec) {
+                echo $i++;
+                 $echecStmt = $db->prepare('SELECT questionsIntellect, idIntellect FROM  intellects WHERE pageIntellect ='.$page.' AND questionsIntellect LIKE  :echec');
+                 var_dump($echec->questionEchec);
+                 $condition = "%$echec->questionEchec%";
+                 $echecStmt->bindParam(':echec', $condition);
+                 $echecStmt->execute();
+                 $echecresutlt = $echecStmt->fetch(PDO::FETCH_OBJ);
+                 if ($echecresutlt) {
+                    $id = $echec->idEchec;
+                    $echec = $db->prepare("UPDATE echecs SET statusEchec=1, idIntellect=$echecresutlt->idIntellect WHERE idEchec=$id");
+                    $yf = $echec->execute();
+                    echo '<hr>';
+                }
+            }
+            /**
+             * enregistrement des activités
+             */
             $activite = $db->prepare("INSERT INTO activities(authorActivity, actionActivity, descActivity, page) VALUE(:authorActivity, :actionActivity, :descActivity, :page)");
             $activite->bindParam(':authorActivity', $author);
             $activite->bindParam(':actionActivity', $action); 
@@ -168,7 +213,7 @@
             $desc =  "Q: ".$question.", R: ".$answers;
             //rechercher id du dernier utilisateur creer
             $insertActivite = $activite->execute();
-            if ($insertActivite) {
+            if ($insertActivite){
                 $output=array('editResult'=>"success");
                 echo json_encode($output); 
             }
