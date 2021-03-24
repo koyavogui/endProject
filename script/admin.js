@@ -112,3 +112,16 @@ $(document).ready(function () {
         $("#passwordModal").modal('show');
     }); 
 });
+
+// fonction de pagination
+
+function pagination(page, operation) {
+    $(function () {
+            const url = './../../services/'+operation +'.php';
+            $.post(url, {page : page},
+            function (data) {
+                $("#table").html(data);
+            }
+        );
+    });
+}

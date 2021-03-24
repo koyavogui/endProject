@@ -184,9 +184,8 @@
             $echecs = $echec->fetchAll(PDO::FETCH_OBJ);
             $i=0;
             foreach ($echecs as $echec) {
-                echo $i++;
+                 
                  $echecStmt = $db->prepare('SELECT questionsIntellect, idIntellect FROM  intellects WHERE pageIntellect ='.$page.' AND questionsIntellect LIKE  :echec');
-                 var_dump($echec->questionEchec);
                  $condition = "%$echec->questionEchec%";
                  $echecStmt->bindParam(':echec', $condition);
                  $echecStmt->execute();
@@ -195,7 +194,7 @@
                     $id = $echec->idEchec;
                     $echec = $db->prepare("UPDATE echecs SET statusEchec=1, idIntellect=$echecresutlt->idIntellect WHERE idEchec=$id");
                     $yf = $echec->execute();
-                    echo '<hr>';
+                    
                 }
             }
             /**

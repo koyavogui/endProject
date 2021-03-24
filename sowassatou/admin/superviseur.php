@@ -46,7 +46,7 @@
     </section>
     <section class="mt-3 mb-5" id="table">
         <table class="table  border-dark table-sm">
-            <thead class="bg-zokubird">
+            <thead class="bg-zokubird-ligth">
                 <tr class="">
                 <th scope="col">Auteur</th>
                 <th scope="col">Actions</th>
@@ -88,7 +88,7 @@
             if($page == 1) {
                 echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
             }else{
-                echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'pagination_superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
             }
 
             echo'<li class="page-item" id="pageActuel" data-page='. $page .'><span class="page-link border-0 text-secondary">'.$page.' sur '.$nombredepage.'</span></li>';
@@ -96,7 +96,7 @@
             if($page == 7) {
                 echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
             }else{
-                echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'pagination_superviseur\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
             }
             echo '</ul>
           </nav>';

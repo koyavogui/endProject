@@ -57,7 +57,7 @@
                         ?> 
                         </tbody>
                     </table>
-                    <div class="row d-flex justify-content-center align-items-center">
+                    <!-- <div class="row d-flex justify-content-center align-items-center">
                         <nav aria-label="Page navigation example  ">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
@@ -71,7 +71,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
                 </section> 
             </section>
         </div>

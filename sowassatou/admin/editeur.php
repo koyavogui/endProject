@@ -17,40 +17,40 @@
             </div>
         </div>
     </div>
-    <div class="modal fade " id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal" id="editModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-            <div class="modal-header bg-zokubird">
-                <h5 class="modal-title" id="exampleModalLabel">Modification </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" class="container" id="modalForm">
-                    <div class="form-group">
-                        <label for="editQuestion" class="text-zokubird">Les Questions: </label>
-                        <textarea class="form-control border border-primary" id="editQuestion" name="editQuestion" rows="4"></textarea>
-                    </div>
-                        
-                    <div class="form-group">
-                        <label for="editAnswers" class="text-zokubird">Votre reponse : </label>
-                        <textarea class="form-control border border-primary" id="editAnswers" name="editAnswers" rows="2"></textarea>
-                    </div>
-                    <div class="form-group container   p-0">
-                        <div class="row container-fluid m-0 p-0">
-                            <input type="file" name="editImageQuestion" id="editImageQuestion" class="form-control-file col-md-7" placeholder="michel">
-                            <div class=" col-md-5 text-zokubird"><p>Ou votre code d’intégration YouTube ci-dessous</p></div>
+                <div class="modal-header bg-zokubird">
+                    <h5 class="modal-title" id="exampleModalLabel">Modification </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" class="container" id="modalForm">
+                        <div class="form-group">
+                            <label for="editQuestion" class="text-zokubird">Les Questions: </label>
+                            <textarea class="form-control border border-primary" id="editQuestion" name="editQuestion" rows="4"></textarea>
                         </div>
-                    </div>
-                    <input type="hidden" name="id" id="id">
-                    <div class="form-group">
-                        <input type="text" name="youtube" id="youtube" class="form-control form-control-lg border border-primary">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-zokubird" id="edit"><i class="bi bi-save-fill"></i> Modifier </button>
-            </div>
+                            
+                        <div class="form-group">
+                            <label for="editAnswers" class="text-zokubird">Votre reponse : </label>
+                            <textarea class="form-control border border-primary" id="editAnswers" name="editAnswers" rows="2"></textarea>
+                        </div>
+                        <div class="form-group container   p-0">
+                            <div class="row container-fluid m-0 p-0">
+                                <input type="file" name="editImageQuestion" id="editImageQuestion" class="form-control-file col-md-7" placeholder="michel">
+                                <div class=" col-md-5 text-zokubird"><p>Ou votre code d’intégration YouTube ci-dessous</p></div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" id="id">
+                        <div class="form-group">
+                            <input type="text" name="youtube" id="youtube" class="form-control form-control-lg border border-primary">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" id="editclose">Fermer</button>
+                    <button type="button" class="btn btn-zokubird" id="edit"><i class="bi bi-save-fill"></i> Modifier </button>
+                </div>
             </div>
         </div>
     </div>
@@ -65,13 +65,18 @@
                 $db = null;
                 $i = 0;
                 unset($_SESSION['idEChec']);
+                $nombredepage = intdiv($nbr,5);
+                    $reste = $nbr%5;
+                    if ($reste !=0 ) {
+                        ++$nombredepage;
+                    }
             ?>
             <h2 class="first">Intelligence Zokubird (<?php echo $nbr; ?>)</h2>
         </section>
         <section class="container">
             <a href="register.php" class="ml-3 btn btn-zokubird text-light rounded-0">Ajouter une intelligence</a>
         </section>
-        <section class="mt-3 table-responsive-sm">
+        <section class="mt-3 table-responsive-sm" id="table">
             <table class="table table-striped border-dark table-sm">
                 <thead class="bg-zokubird">
                     <tr class="">
@@ -83,32 +88,39 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                <?php foreach ($zbird as $mind) { $i++ ; ?>
+                <?php foreach ($zbird as $key => $mind) {  if ($key < 5) {$key++ ;?>
                     <tr>
-                        <th scope="row"><?php echo $i ?></th>
+                        <th scope="row"><?php echo $key ?></th>
                         <td><?php echo $mind->questionsIntellect; ?></td>
                         <td><?php echo $mind->answersIntellect; ?></td>
                         <td><a href="">ressource</a></td>
-                        <td class="text-center"><a class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  data-id="<?php echo $mind->idIntellect; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                        <td class=""><a class="text-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"  data-delete="<?php echo $mind->idIntellect; ?>"><i class="bi bi-trash"></i></a></td>
+                        <td class="text-center"><a class="text-success" data-bs-toggle="modal" data-bs-target="#editModal"  data-bs-id="<?php echo $mind->idIntellect; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                        <td class=""><a class="text-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"  data-bs-delete-="<?php echo $mind->idIntellect; ?>"><i class="bi bi-trash"></i></a></td>
                     </tr> 
-                <?php }?>
+                <?php }}?>
                 </tbody>
             </table>
             <div class="row d-flex justify-content-center align-items-center">
-                <nav aria-label="Page navigation example  ">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                        <a class="page-link text-zokubird" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="bg-zokubird page-link text-white" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link text-zokubird" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link text-zokubird" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link text-zokubird" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php    
+                        echo '<nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">';
+                        $page = 1 ;
+                        if($page == 1) {
+                            echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                        }else{
+                            echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'pagination_intellect\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                        }
+
+                        echo'<li class="page-item" id="pageActuel" data-page='. $page .'><span class="page-link border-0 text-secondary">'.$page.' sur '.$nombredepage.'</span></li>';
+                        
+                        if($page == $nombredepage) {
+                            echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                        }else{
+                            echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'pagination_intellect\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                        }
+                        echo '</ul>
+                    </nav>';
+                ?>
             </div>
         </section>
     </div>

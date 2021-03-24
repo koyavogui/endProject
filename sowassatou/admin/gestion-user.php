@@ -28,6 +28,11 @@
                     $nbr      = $users->rowCount();
                     $users    = $users->fetchAll(PDO::FETCH_OBJ);
                     $db = null;
+                    $nombredepage = intdiv($nbr,5);
+                    $reste = $nbr%5;
+                    if ($reste !=0 ) {
+                        ++$nombredepage;
+                    }
                 ?>
                 <section class="d-flex justify-content-center my-4">
                     <h2 class="first">GESTION DES UTILISATEURS (<?php echo $nbr; ?>)</h2>
@@ -36,7 +41,7 @@
                     <div class="mx-3 btn btn-zokubird text-light rounded-0" id="btnAdd" data-bs-toggle="modal" data-bs-target="#addModal">Ajouter un utilisateur</div>
                     <p class="fw-lighter"> Les utilisateurs en rouge sont les utilisateurs bloqués qui ne pourront plus se connecter à la plateforme </p>
                 </section>
-                <section class="mt-3 table-responsive">
+                <section class="mt-3 table-responsive" id="table">
                     <table class="table border-dark table-sm">
                         <thead class="bg-zokubird-ligth">
                             <tr class="">
@@ -49,7 +54,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $user) {?>
+                            <?php foreach ($users as $key=>$user) {
+                                if ($key < 5) {?>
                                 <tr class="">
                                     <td>
                                         <?php echo $user->fullNamesUser; ?>
@@ -66,24 +72,29 @@
                                         </span>
                                     </td>
                                 </tr>
-                            <?php }?>
+                            <?php }}?>
                         </tbody>
                     </table>
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <nav aria-label="Page navigation example  ">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                <a class="page-link text-zokubird" href="#" tabindex="1" aria-disabled="true">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="bg-zokubird page-link text-white" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link text-zokubird" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link text-zokubird" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link text-zokubird" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <?php    
+                        echo '<nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">';
+                        $page = 1 ;
+                        if($page == 1) {
+                            echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                        }else{
+                            echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'pagination_administrateur\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                        }
+
+                        echo'<li class="page-item" id="pageActuel" data-page='. $page .'><span class="page-link border-0 text-secondary">'.$page.' sur '.$nombredepage.'</span></li>';
+                        
+                        if($page == 7) {
+                            echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                        }else{
+                            echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'pagination_administrateur\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                        }
+                        echo '</ul>
+                    </nav>';
+                    ?>
                 </section>
         </div>
 
@@ -196,55 +207,21 @@
                 </div>
             </div>
         </div>
-        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
+         
 </div>      
-    <div aria-live="polite" aria-atomic="true" style="position: fixe; min-height: 200px; width: 40%;">
-        <div class="toast ml-auto mt-2 mr-2 toast fade hide "  id="successToast" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <div class="text-success"><i class="fas fa-square"></i></div>
-                <strong class="mr-auto">Alert</strong>
-                <small>11 mins ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Votre opération a réussie.
-            </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast ml-auto mt-2 mr-2 toast fade hide "  id="errorToast" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <div class="text-danger"><i class="fas fa-square"></i></div>
-                <strong class="mr-auto">Alert</strong>
-                <small>11 mins ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Votre opération a echoué.
-            </div>
+        <div class="toast-body">
+        Hello, world! This is a toast message.
         </div>
     </div>
-        
-      
+    </div>
        <!-- footer-->
        <?php require '../../includes/footer.php' ?>    
     <script src="../../script/jquery.js" ></script>

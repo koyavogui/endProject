@@ -5,7 +5,7 @@ $(document).ready(function(){
      */
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
+        var id = button.data('bs-id') // Extract info from data-* attributes
         var modal = $(this)
         // traitement de formulaire pour recuperer les données
         $.post( "../../services/editeur.php", { idEdit: id}, function( data ) {
@@ -13,7 +13,7 @@ $(document).ready(function(){
             modal.find('.modal-body #editAnswers').html(data.reponse)
             modal.find('.modal-body #edtImageQuestion').html(data.image) 
             modal.find('.modal-body #youtube').val(data.ressource)
-            modal.find('.modal-body #id').val(data.id)
+            modal.find('.modal-body #id').val(data.bs-id)
           }, "json");
           
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -61,15 +61,13 @@ $(document).ready(function(){
             data: formdata,
             success: function (response) {
                  if (response.editResult == "success") {
-                    $( "#tbody" ).load( "tabe.php" );
-                    $('#editModal').modal('hide')
+                      
+                     $( "#tbody" ).load( "tabe.php" );
+                     $('#editclose').trigger("click");
+                     
                  }
             }
         });
-
-        // $.post( "traitement.php", $( "#modalForm" ).serialize(), "json", "multipart/form-data");
-        // $.ajax({url: "demo_ajax_script.js", dataType: "script"});
-         
      })
 
      /**
@@ -134,3 +132,14 @@ $(document).ready(function(){
 
        
 })
+
+function pagination(page, operation) {
+    $(function () {
+            const url = './../../services/'+operation +'.php';
+            $.post(url, {page : page},
+            function (data) {
+                $("#table").html(data);
+            }
+        );
+    });
+}

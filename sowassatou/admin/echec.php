@@ -7,10 +7,6 @@ session_start();
 //     else
 //         $ip = $_SERVER['REMOTE_ADDR'];
                 
-//     return $ip;
-// }
-
-// echo getIp();
     require "./../../database/database.php";
 
     $page = $_SESSION['numPage'];
@@ -20,6 +16,11 @@ session_start();
     $zbird = $zbirdEchecs->fetchAll(PDO::FETCH_OBJ);
     $db = null;
     $i = 0;
+    $nombredepage = intdiv($nbr,15);
+    $reste = $nbr%15;
+    if ($reste !=0 ) {
+        ++$nombredepage;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +36,7 @@ session_start();
      <section class="d-flex justify-content-center my-3">
         <h2 class="first">Echecs de réponse Zokubird (<?php echo $nbr; ?>)</h2>
      </section>
-     <section class="mt-3 container mb-5">
+     <section class="mt-3 container mb-3" id="table">
         <table class="table table-striped border-dark table-sm">
             <thead class="bg-zokubird">
                 <tr class="">
@@ -47,37 +48,46 @@ session_start();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($zbird  as $e) {$i++?>
+                <?php foreach ($zbird  as $key => $e) {  if ($key < 15) {$key++ ; ?>
                 <tr>
-                    <th scope="row"><?php echo $i ?></th>
+                    <th scope="row"><?php echo $key ?></th>
                     <td><?php echo $e->questionEchec; ?></td>
                     <td><?php echo $e->ipEchec; ?></td>
                     <td><?php echo $result = ( $e->statusEchec == 0) ?  '<span><a href="./redirect.php?intellect='.$e->idEchec.'" target="_blank" >Ajouté</a></span>' :  'Déjà ajouter' ; ?></td>
                     <td class=""><?php echo $e->create_at; ?></td>
                 </tr>
-                <?php }?>
+                <?php }}?>
 
             </tbody>
         </table>
+       
         <div class="row d-flex justify-content-center align-items-center">
-            <nav aria-label="Page navigation example  ">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                    <a class="page-link text-zokubird" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="bg-zokubird page-link text-white" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-zokubird" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-zokubird" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link text-zokubird" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+            <?php    
+                    echo '<nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">';
+                    $page = 1 ;
+                    if($page == 1) {
+                        echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                    }else{
+                        echo'<li class="page-item" id="'. ($page - 1 ).'" onclick="pagination(this.id, \'pagination_echec\')"><span class="page-link border-0"><i class="bi bi-caret-left-fill"></i></span></li>'; 
+                    }
+
+                    echo'<li class="page-item" id="pageActuel" data-page='. $page .'><span class="page-link border-0 text-secondary">'.$page.' sur '.$nombredepage.'</span></li>';
+                    
+                    if($page == $nombredepage) {
+                        echo'<li class="page-item disabled"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                    }else{
+                        echo'<li class="page-item" id="'. $page + 1 .'" onclick="pagination(this.id, \'pagination_echec\')"><span class="page-link border-0"><i class="bi bi-caret-right-fill"></i></span></li>';
+                    }
+                    echo '</ul>
+                </nav>';
+            ?>
         </div>
      </section>
        <!-- footer-->
-       <?php require '../../includes/footer.php' ?>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <?php require './../../includes/footer.php' ?>
+       <script src="../../script/jquery.js" ></script>
+       <script src="./../../script/editeur.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>
