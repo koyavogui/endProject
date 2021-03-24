@@ -104,55 +104,33 @@ $(document).ready(function(){
      */
 
     $("#email").keyup(function () {
-        // $(selector).keyup(function (e) { 
-            
-        // });
         const email = $("#email").val();
-        if(email !== ' '){
+        if(email !== ''){
             $.post( "../../services/registrer.php", { checkEmail : email }, function( data ) {
                 if (data.resultCheckEmail == 1) {
+                    $("#profilUpdate").attr('disabled', 'disabled');
                     if (!$("#email").is(".is-invalid")) {
-                        $( "#email" ).toggleClass("is-invalid");
+                        $( "#email" ).addClass("is-invalid");
+                        $( "#email" ).removeClass("is-valid");
+                        $( "#email" ).toggleClass("border-danger", "border-primary");
                     }
                     if ($("#email").is(".is-valid")) {
-                        $( "#email" ).toggleClass("is-invalid", "is-valid");
+                        $( "#email" ).addClass("is-invalid border-danger");
+                        $("#email").removeClass("is-valid border-primary");
                     }
                 } else {
                     if (!$("#email").is(".is-valid")) {
                         $( "#email" ).toggleClass("is-valid");
                     }
                     if ($("#email").is(".is-invalid")) {
-                        $( "#email" ).toggleClass("is-invalid", "is-valid");
+                        $( "#email" ).addClass("is-valid");
+                        $( "#email" ).removeClass("is-invalid");
+                        $( "#email" ).toggleClass("border-danger", "border-primary");
                     }
                 }
                 }, "json");
         }
       })
 
-      /**
-       * Verification d'email
-       */
-
-    //   $("#email").focusout(function () {
-    //     const email = $("#email").val();
-    //     if(email !== ''){
-    //         $.post( "../../services/registrer.php", { checkEmail : email }, function( data ) {
-    //             if (data.resultCheckEmail == 1) {
-    //                 if (!$("#email").is(".is-invalid")) {
-    //                     $( "#email" ).toggleClass("is-invalid");
-    //                 }
-    //                 if ($("#email").is(".is-valid")) {
-    //                     $( "#email" ).toggleClass("is-invalid", "is-valid");
-    //                 }
-    //             } else {
-    //                 if (!$("#email").is(".is-valid")) {
-    //                     $( "#email" ).toggleClass("is-valid");
-    //                 }
-    //                 if ($("#email").is(".is-invalid")) {
-    //                     $( "#email" ).toggleClass("is-invalid", "is-valid");
-    //                 }
-    //             }
-    //             }, "json");
-    //     }
-    //   })
+       
 })

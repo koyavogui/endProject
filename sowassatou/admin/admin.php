@@ -4,7 +4,7 @@
         </section>
         <div class="mb-3" id="admin">
         <div class="row col-md-7 mx-auto mb-5" id="admminMineur"> 
-            <article class="col border-zokubird my-3 pt-2">
+            <article class="col my-3 pt-2">
                 <form class="container" enctype="multipart/form-data" id="formPage" >
                     <div class="mb-3">
                         <label for="description" class="text-zokubird">Informations </label>

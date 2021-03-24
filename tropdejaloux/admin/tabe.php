@@ -22,7 +22,7 @@
         <td><?php echo $mind->questionsIntellect; ?></td>
         <td><?php echo $mind->answersIntellect; ?></td>
         <td><a href="">ressource</a></td>
-        <td class="text-center"><a class="text-success" data-toggle="modal" data-target="#editModal"  data-id="<?php echo $mind->idIntellect; ?>"><i class="fas fa-pencil-alt"></i></a></td>
-        <td class=""><a class="text-danger" id="delete" data-toggle="modal" data-target="#deleteModal"  data-delete="<?php echo $mind->idIntellect; ?>"><i class="fas fa-trash-alt"></i></a></td>
+        <td class="text-center"><a class="text-success" data-toggle="modal" data-target="#editModal"  data-id="<?php echo $mind->idIntellect; ?>"><i class="bi bi-pencil-square"></i></a></td>
+        <td class=""><a class="text-danger" id="delete" data-toggle="modal" data-target="#deleteModal"  data-delete="<?php echo $mind->idIntellect; ?>"><i class="bi bi-trash"></i></a></td>
     </tr> 
 <?php }?>

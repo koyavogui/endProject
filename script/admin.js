@@ -87,6 +87,7 @@ $(document).ready(function () {
         const email = $("#email").val();
         if(email !== ''){
             $.post( "./../../services/registrer.php", { checkEmail : email }, function( data ) {
+                $("#profilUpdate").attr('disabled', 'disabled');
                 if (data.resultCheckEmail == 1) {
                     if (!$("#email").is(".is-invalid")) {
                         $( "#email" ).toggleClass("is-invalid");

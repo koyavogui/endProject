@@ -32,8 +32,8 @@ session_start();
 </head>
 <body class="">
     <?php require '../../includes/header_editeur.php' ?>
-     <section class="d-flex justify-content-center">
-        <h2>Echecs de réponse Zokubird (<?php echo $nbr; ?>)</h2>
+     <section class="d-flex justify-content-center my-3">
+        <h2 class="first">Echecs de réponse Zokubird (<?php echo $nbr; ?>)</h2>
      </section>
      <section class="mt-3 container mb-5">
         <table class="table table-striped border-dark table-sm">

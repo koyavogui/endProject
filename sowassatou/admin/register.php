@@ -79,12 +79,12 @@
                 <form method="POST" enctype="multipart/form-data" class="container" id="modalForm">
                     <div class="mb-3">
                         <label for="editQuestion" class="text-zokubird label-control">Les Questions: </label>
-                        <textarea class="form-control border border-primary" id="editQuestion" name="editQuestion" rows="4"></textarea>
+                        <textarea class="form-control rounded-0 border border-primary" id="editQuestion" name="editQuestion" rows="4"></textarea>
                     </div>
                         
                     <div class="mb-3">
                         <label for="editAnswers" class="text-zokubird label-control">Votre reponse : </label>
-                        <textarea class="form-control border border-primary" id="editAnswers" name="editAnswers" rows="2"></textarea>
+                        <textarea class="form-control rounded-0 border border-primary" id="editAnswers" name="editAnswers" rows="2"></textarea>
                     </div>
                     <div class="mb-3 container   p-0">
                         <div class="row container-fluid m-0 p-0">
@@ -94,7 +94,7 @@
                     </div>
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">
-                        <input type="text" name="youtube" id="youtube" class="form-control form-control-lg border border-primary">
+                        <input type="text" name="youtube" id="youtube" class="form-control rounded-0 form-control-lg border border-primary">
                     </div>
                 </form>
             </div>
@@ -105,11 +105,11 @@
             </div>
         </div>
     </div>
-     <section class="d-flex justify-content-center">
-        <h2>Enregistrer une intelligence</h2>
+     <section class="d-flex justify-content-center my-3">
+        <h2 class="first">Enregistrer une intelligence</h2>
      </section>
-     <div class="row col-md-7 mx-auto">
-        <article class="col border border-zokubird my-3">
+     <div class="row col-md-7 mx-auto mb-3">
+        <article class="col  my-3">
             <form enctype="multipart/form-data" class="container" id="intellectForm">
                 <?php 
                 if (!empty($echec)) {
@@ -118,22 +118,22 @@
                 }
                 ?>
                 <div class="mb-3">
-                    <label for="question" class="text-zokubird label-control">Les Questions: </label>
-                    <textarea class="form-control border border-primary" id="question" name="question" rows="4"  ><?php echo $retVal = (!empty($echec)) ? @$echec->questionEchec: "" ; ?></textarea>
+                    <label for="question" class="text-zokubird label-control mb-1">Les Questions: </label>
+                    <textarea class="form-control rounded-0 border border-primary" id="question" name="question" rows="4"  ><?php echo $retVal = (!empty($echec)) ? @$echec->questionEchec: "" ; ?></textarea>
                 </div>
                     
                 <div class="mb-3">
-                    <label for="answers" class="text-zokubird label-control">Votre reponse : </label>
-                    <textarea class="form-control border border-primary" id="answers" name="answers" rows="2"></textarea>
+                    <label for="answers" class="text-zokubird label-control mb-1">Votre reponse : </label>
+                    <textarea class="form-control rounded-0 border border-primary" id="answers" name="answers" rows="2"></textarea>
                 </div>
                 <div class="mb-3 container   p-0">
-                    <div class="row container-fluid m-0 p-0">
-                        <input type="file" name="imageQuestion" id="imageQuestion" class="form-control-file  border border-zokubird col-md-7">
+                    <div class="row container-fluid m-0 py-2 border border-primary">
+                        <input type="file" name="imageQuestion" id="imageQuestion" class="form-control-file   col  container-fluid">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="label-control text-zokubird">Ou votre code d’intégration YouTube ci-dessous</label>
-                    <input type="text" name="youtube" id="youtube" class="form-control form-control-lg border border-primary">
+                    <label for="" class="label-control text-zokubird mb-1">Ou votre code d’intégration YouTube ci-dessous</label>
+                    <input type="text" name="youtube" id="youtube" class="form-control rounded-0 form-control-lg border border-primary">
                 </div>
                 <div class="mb-3 row" class="text-zokubird label-control">
                     <button type="submit" class="mx-auto col-md-6 btn btn-zokubird text-light">Valider</button>
@@ -143,8 +143,7 @@
     </div>
 
        <!-- footer-->
-    <footer class="bg-zokubird text-light  text-center  fixed-bottom" style="height :40px;"> Copyright@ Koya Michel</footer>
-    
+            <?php include '../../includes/footer.php';  ?>
     <script src="../../script/jquery.js" ></script>
     <script src="../../script/editeur.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>

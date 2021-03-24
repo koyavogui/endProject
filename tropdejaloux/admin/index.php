@@ -18,7 +18,7 @@
     <?php require '../../includes/head.php' ?>
     <title>Zokubird - <?php echo $_SESSION['nomPage']; ?> </title>
 </head>
-<body class="container-fluid">
+<body class="container-fluid p-0">
         <?php
         // var_dump($_SESSION['role']);
         $script = "";
@@ -44,10 +44,9 @@
         ?>
         </div>
        <!-- footer-->
-       <footer class="bg-zokubird text-light mt-2" style="height :40px; width:100%;"> Copyright</footer>
-
+       <?php require '../../includes/footer.php' ?>
     <script src="../../script/jquery.js" ></script>
     <script src="../../script/<?php echo $script;?>"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>

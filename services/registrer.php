@@ -2,7 +2,7 @@
 /**
  *  recuperation de la bd
  */
-
+    
     require "../database/database.php";
     session_start();
     /**
@@ -11,10 +11,10 @@
      *  Création de l'utilisation avec l'identifiant de la page creer
      *  Mise à jour de la page en ajoutant l'identifiant de l'utilisateur qui a crée la page.
      */
-    // var_dump($_POST);
-
-         // Creation de l'utilisateur 
-         if (!empty(@$_POST['password_verify']) AND !empty(@$_POST['email']) AND !empty(@$_POST['fullNames']) AND !empty(@$_POST['pageName']) ) {
+    
+    // Creation de l'utilisateur 
+    if (!empty(@$_POST['password_verify']) AND ( $_POST['password_verify']==  $_POST["password"]) AND !empty(@$_POST['email']) AND !empty(@$_POST['fullNames']) AND !empty(@$_POST['pageName']) ) {
+        var_dump($_POST);
             //préparer les paramètres sql et bind de l'utilisateur
            $user = $db->prepare("INSERT INTO users(fullNamesUser, emailUser, phoneUser, passwordUser, roleUser) VALUES (:fullName, :email, :phone, :password, :role)");
            
@@ -42,14 +42,14 @@
                //préparer les paramètres sql et bind de la page
                $page = $db->prepare("INSERT INTO pages(nomPage, userPage, countriePage, cityPage, adressPage, nomDossierPage) VALUES (:nomPage, :idUser, :countrie, :city, :adress, :nomdossier)");
                
-               $page -> bindParam(':nomPage',$nomDossier);
+               $page -> bindParam(':nomPage',$nompage);
                $page -> bindParam(':idUser',$idUser->idUser);
                $page -> bindParam(':countrie', $countrie);
                $page -> bindParam(':city', $city);
                $page -> bindParam(':adress', $adress);
                $page -> bindParam(':nomdossier', $nomDossier);
                
-               $nomDossier     = strip_tags($_POST['pageName']);
+               $nompage     = strip_tags($_POST['pageName']);
                $countrie    = strip_tags($_POST['countrie']);
                $city        = strip_tags($_POST['city']);
                $adress      = strip_tags($_POST['adress']);
@@ -80,11 +80,7 @@
                            echo "La copie $file du fichier a échoué...\n";
                        }
                        
-                    //    $file = $dir.'models/login.php';
-                    //    $newfile = $dir.$nomDossier.'/login.php';
-                    //    if (!copy($file, $newfile)){
-                    //        echo "La copie $file du fichier a échoué...\n";
-                    //    }
+                    
                        
                        $zip = new ZipArchive;
                        $res = $zip->open('../models/admin.zip');
@@ -94,38 +90,6 @@
                        } else {
                            echo 'échec, code:' . $res;
                        }
-                    //    $zip = new ZipArchive;
-                    //    $res = $zip->open('../models/superviseur.zip');
-                    //    if ($res === TRUE) {
-                    //        $zip->extractTo($dir.$nomDossier);
-                    //        $zip->close();
-                    //    } else {
-                    //        echo 'échec, code:' . $res;
-                    //    }
-                    //    $zip = new ZipArchive;
-                    //    $res = $zip->open('../models/editeur.zip');
-                    //    if ($res === TRUE) {
-                    //        $zip->extractTo($dir.$nomDossier);
-                    //        $zip->close();
-                    //    } else {
-                    //        echo 'échec, code:' . $res;
-                    //    }
-                    //    $zip = new ZipArchive;
-                    //    $res = $zip->open('../models/traitements.zip');
-                    //    if ($res === TRUE) {
-                    //        $zip->extractTo($dir.$nomDossier);
-                    //        $zip->close();
-                    //    } else {
-                    //        echo 'échec, code:' . $res;
-                    //    }
-                    //    $zip = new ZipArchive;
-                    //    $res = $zip->open('../models/js.zip');
-                    //    if ($res === TRUE) {
-                    //        $zip->extractTo($dir.$nomDossier);
-                    //        $zip->close();
-                    //    } else {
-                    //        echo 'échec, code:' . $res;
-                    //    }
                    }else{
                        die('Echec lors de la création des répertoires...');
                    }

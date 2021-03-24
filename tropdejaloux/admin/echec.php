@@ -14,7 +14,7 @@ session_start();
     require "./../../database/database.php";
 
     $page = $_SESSION['numPage'];
-    $zbirdEchecs =  $db->prepare("SELECT * FROM echecs WHERE idPage ='$page' ORDER BY create_at ASC");
+    $zbirdEchecs =  $db->prepare("SELECT * FROM echecs WHERE idPage ='$page' ORDER BY statusEchec ASC");
     $zbirdEchecs ->execute();
     $nbr = $zbirdEchecs->rowCount();
     $zbird = $zbirdEchecs->fetchAll(PDO::FETCH_OBJ);
@@ -28,15 +28,14 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/style.css">
     <?php require '../../includes/head.php' ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Zokubird Connexion</title>
 </head>
-<body class="container-fluid">
+<body class="">
     <?php require '../../includes/header_editeur.php' ?>
-     <section class="d-flex justify-content-center">
-        <h2>Echecs de réponse Zokubird (<?php echo $nbr; ?>)</h2>
+     <section class="d-flex justify-content-center my-3">
+        <h2 class="first">Echecs de réponse Zokubird (<?php echo $nbr; ?>)</h2>
      </section>
-     <section class="mt-3">
+     <section class="mt-3 container mb-5">
         <table class="table table-striped border-dark table-sm">
             <thead class="bg-zokubird">
                 <tr class="">
@@ -79,7 +78,6 @@ session_start();
        <!-- footer-->
        <?php require '../../includes/footer.php' ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh5AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>
