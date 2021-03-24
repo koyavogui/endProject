@@ -2,6 +2,17 @@
     /**
      * Recuperaption de la variable de connexion à la base de données.
      */
+    session_start();
+    if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Finalement, on détruit la session.
+session_destroy()
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,7 +22,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <title>Zokubird Admin</title>
+    <title>Zokubird</title>
 </head>
 <body class="container-fluid px-0">
         <!-- Entente-->

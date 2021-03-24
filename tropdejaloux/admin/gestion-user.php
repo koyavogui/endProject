@@ -94,7 +94,7 @@
                 <div class="modal-content  rounded-0 border-zokubird">
                 <div class="modal-header border-0">
                     <h5 class="modal-title">Ajouter un utilisateur</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" class="m-2" id="addUserFom">
@@ -129,7 +129,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
                     <button type="button" class="btn btn-success" id="btnAddUserForm">Ajouter</button>
                 </div>
                 </div>
@@ -141,7 +141,7 @@
                 <div class="modal-content border-zokubird rounded-0 ">
                 <div class="modal-header border-0">
                     <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form class="m-2" id="editUserFom">
@@ -191,7 +191,7 @@
                     </form>
                 </div> 
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">fermer</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">fermer</button>
                     <button type="button" class="btn btn-success" id="btnEditUserForm">Modifier</button>
                 </div>
                 </div>
@@ -204,7 +204,7 @@
                 <div class="text-success"><i class="fas fa-square"></i></div>
                 <strong class="mr-auto">Alert</strong>
                 <small>11 mins ago</small>
-                <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
                 Votre opération a réussie.
@@ -215,7 +215,7 @@
                 <div class="text-danger"><i class="fas fa-square"></i></div>
                 <strong class="mr-auto">Alert</strong>
                 <small>11 mins ago</small>
-                <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
                 Votre opération a echoué.

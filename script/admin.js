@@ -1,9 +1,5 @@
 $(document).ready(function () {
     $("#addUser").hide();
-    $("#btnAdd").click(function (e) { 
-        e.preventDefault();
-        $('#addModal').modal('show');
-    });
       /**
        * Enregistrement d'un opérateur
        */
@@ -11,9 +7,10 @@ $(document).ready(function () {
         e.preventDefault();
         $.post( "../../services/admin.php", $("#addUserFom").serialize(), function (data) {
             if (data.result == "success") {
+                $("#addUserFom")[0].reset();
                 $('#addModal').modal('hide');
                 $("#successToast").toast('show');
-                $("#listUser").load("gestion-user.php #listUser");
+                $("#listUser").load("gestion-user.php #update");
             } else {
                 $("#errorToast").toast('show');
             }
@@ -60,7 +57,7 @@ $(document).ready(function () {
      *  lancement du modal de vérification
      */
     $("#editModal").on('show.bs.modal', function (event) {
-        const id = event.relatedTarget.getAttribute('data-id'); 
+        const id = event.relatedTarget.getAttribute('data-bs-id'); 
         $("#editIdUser").val(id);
         $.post( "../../services/admin.php", {identifiant : id}, function(r) {
             $("#editfullNames").text(r.fullNames);
@@ -68,7 +65,7 @@ $(document).ready(function () {
             $("#editphone").text(r.phone);
             $("#editrole").val(r.role);
             $("#fullNameEdit").val(r.fullNames);
-            console.log($("#editroleUser1").val());
+            // console.log($("#editroleUser1").val());
             if(r.status == 1){
                 $( "#editroleUser1").prop( "checked",  true);
                 $( "#editroleUser2").prop( "checked",  false);
@@ -77,7 +74,6 @@ $(document).ready(function () {
                 $( "#editroleUser1").prop( "checked",  false);
             }
         }, "json")
-
      })
     
      /**
@@ -110,16 +106,9 @@ $(document).ready(function () {
       /**
        * activé modal de modification de mot de passe
        */
+    
     $("#pmKey").click(function (e) { 
         e.preventDefault();
         $("#passwordModal").modal('show');
-    });
-    //    var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'), {
-    //     keyboard: false
-    //   })
-    //   $("#pmKey").click(function (e) { 
-    //       e.preventDefault();
-    //       passwordModal.show()
-    //   });
-    
+    }); 
 });

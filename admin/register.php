@@ -54,7 +54,7 @@
             <div class="modal-content">
             <div class="modal-header bg-danger text-ligth ">
                 <h5 class="modal-title">Supression d'une intelligence</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -63,7 +63,7 @@
                 <input type="hidden" name="delete" id="deleteInput">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-danger text-ligth" id="delete"><i class="fas fa-trash-alt"></i>Supprimer</button>
             </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="modal-content">
             <div class="modal-header bg-zokubird">
                 <h5 class="modal-title" id="exampleModalLabel">Modification </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -102,7 +102,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fermer</button>
                 <button type="button" class="btn btn-zokubird" id="edit">Modifier</button>
             </div>
             </div>

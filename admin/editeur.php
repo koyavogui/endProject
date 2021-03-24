@@ -4,14 +4,14 @@
             <div class="modal-content">
             <div class="modal-header bg-danger text-ligth border-right border-danger ">
                 <h5 class="modal-title text-light">Supression d'une intelligence</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Vous ête sur le point de supprimer une intelligence. Vous en êtes sure ?</p>
                 <input type="hidden" name="delete" id="deleteInput">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-danger text-ligth" id="delete"><i class="fas fa-trash-alt"></i> Supprimer</button>
             </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="modal-content">
             <div class="modal-header bg-zokubird">
                 <h5 class="modal-title" id="exampleModalLabel">Modification </h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data" class="container" id="modalForm">
@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fermer</button>
                 <button type="button" class="btn btn-zokubird" id="edit">Modifier</button>
             </div>
             </div>
