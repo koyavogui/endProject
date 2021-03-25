@@ -13,7 +13,7 @@ $(document).ready(function(){
             modal.find('.modal-body #editAnswers').html(data.reponse)
             modal.find('.modal-body #edtImageQuestion').html(data.image) 
             modal.find('.modal-body #youtube').val(data.ressource)
-            modal.find('.modal-body #id').val(data.bs-id)
+            modal.find('.modal-body #id').val(data.id)
           }, "json");
           
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -24,18 +24,16 @@ $(document).ready(function(){
      */
     $('#deleteModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('delete')
+        var id = button.data('bs-delete')
         var modal = $(this)
         modal.find('.modal-body #deleteInput').val(id)
-        console.log(id);
     })
     $('#delete').click(function () {  
         const id =  $('#deleteInput').val() // Extract info from data-* attributes
-        console.log(id)
         $.post( "../../services/editeur.php", {idDelete: id}, function( data ) {
             if (data.reponse == "success") {
                 $( "#tbody" ).load( "tabe.php" );
-                 $('#deleteModal').modal('hide')
+                 $('#delete').trigger("click");
             }
         }, "json");
     }) 

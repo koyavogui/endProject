@@ -97,7 +97,6 @@
             $i=0;
             foreach ($echecs as $echec) {
                  $echecStmt = $db->prepare('SELECT questionsIntellect, idIntellect FROM  intellects WHERE pageIntellect ='.$page.' AND questionsIntellect LIKE  :echec');
-                 var_dump($echec->questionEchec);
                  $condition = "%$echec->questionEchec%";
                  $echecStmt->bindParam(':echec', $condition);
                  $echecStmt->execute();
@@ -146,7 +145,6 @@
      */
 
     if (isset($_POST['id'])) {
-        
         $intellect = $db->prepare("UPDATE intellects SET questionsIntellect=:question, answersIntellect=:answers, imageIntellect=:images, ressourceIntelect=:ressources WHERE idIntellect=:id");
         
         $intellect->bindParam(':question',$question);
@@ -175,7 +173,9 @@
                 exit();
             }
         }
-        if ($intellect->execute()) {
+
+        $result = $intellect->execute();
+        if ($result){
             /**
              *  verification dans les echecs toute question faisant parti de l'intelect enregistrer pour l'enlever dans les echecs.
              */

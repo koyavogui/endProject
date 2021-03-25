@@ -127,7 +127,7 @@
         console.log();
         $.ajax({
             type: "POST",
-            url: "./services/profil_update.php",
+            url: "./../../services/profil_update.php",
             data: formdata,
             processData: false,
             contentType: false,
@@ -158,8 +158,8 @@
     $("#passwordValidate").click(function (e) { 
         e.preventDefault();
         const motdepasse = $("#password").val();
-        console.log(motdepasse);
-        $.post( "./services/profil_update.php", { motdepasse: motdepasse}, function( r ) {
+        // console.log(motdepasse);
+        $.post( "./../../services/profil_update.php", { motdepasse: motdepasse}, function( r ) {
             if (r.result == 'success') {
                 update(); 
             }else{
