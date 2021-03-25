@@ -14,7 +14,7 @@
     
     // Creation de l'utilisateur 
     if (!empty(@$_POST['password_verify']) AND ( $_POST['password_verify']==  $_POST["password"]) AND !empty(@$_POST['email']) AND !empty(@$_POST['fullNames']) AND !empty(@$_POST['pageName']) ) {
-        var_dump($_POST);
+        // var_dump($_POST);
             //préparer les paramètres sql et bind de l'utilisateur
            $user = $db->prepare("INSERT INTO users(fullNamesUser, emailUser, phoneUser, passwordUser, roleUser) VALUES (:fullName, :email, :phone, :password, :role)");
            
